@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.android.jewelery.data.MainData;
+import com.example.android.jewelery.history.HistoryActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemId = item.getItemId();
         if (menuItemId == R.id.action_history) {
-            Context context = MainActivity.this;
-            String mes = "Search clicked";
-            Toast.makeText(context, mes, Toast.LENGTH_SHORT).show();
+
+            Intent historyIntent = new Intent(MainActivity.this, HistoryActivity.class);
+            startActivity(historyIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);
