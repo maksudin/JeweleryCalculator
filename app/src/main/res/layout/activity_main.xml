@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.jewelery.MainActivity">
+
+
+    <TextView
+        android:id="@+id/avaMetalTitle"
+        android:layout_width="201dp"
+        android:layout_height="39dp"
+        android:text="Имеющийся металл"
+        android:textSize="20dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintHorizontal_bias="0.505"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/avaColorLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Цвет"
+        app:layout_constraintLeft_toLeftOf="@+id/avaWeightLabel"
+        android:layout_marginTop="69dp"
+        app:layout_constraintTop_toBottomOf="@+id/avaProbaLabel" />
+
+    <TextView
+        android:id="@+id/avaProbaLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Проба"
+        app:layout_constraintLeft_toLeftOf="@+id/avaWeightLabel"
+        android:layout_marginTop="65dp"
+        app:layout_constraintTop_toBottomOf="@+id/avaWeightLabel" />
+
+    <TextView
+        android:id="@+id/avaWeightLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Вес"
+        app:layout_constraintRight_toLeftOf="@+id/avaMetalTitle"
+        android:layout_marginTop="39dp"
+        app:layout_constraintTop_toBottomOf="@+id/avaMetalTitle" />
+
+    <AutoCompleteTextView
+        android:id="@+id/avaProba"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:text="750"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/avaProbaLabel"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintHorizontal_bias="0.627"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="@+id/avaProbaLabel"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/avaProbaLabel"
+        android:layout_marginBottom="0dp"
+        app:layout_constraintVertical_bias="0.588" />
+
+    <AutoCompleteTextView
+        android:id="@+id/avaWeight"
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="6"
+        app:layout_constraintHorizontal_bias="0.663"
+        app:layout_constraintLeft_toRightOf="@+id/avaWeightLabel"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintTop_toTopOf="@+id/avaWeightLabel"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/avaWeightLabel"
+        android:layout_marginBottom="0dp" />
+
+    <Spinner
+        android:id="@+id/avaColorspinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/avaColorLabel"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/avaColorLabel"
+        android:layout_marginBottom="0dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="@+id/avaProba"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintTop_toTopOf="@+id/avaColorLabel"
+        android:layout_marginTop="0dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="232dp"
+        android:layout_height="60dp"
+        android:text="Далее"
+        android:onClick="testExtraLayoutShowing"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

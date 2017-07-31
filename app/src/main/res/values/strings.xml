@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Jewelery</string>
+
+    <!--Spinner values.-->
+    <string-array name="colors_array">
+        <item>Красный</item>
+        <item>Жёлтый</item>
+        <item>Зелёный</item>
+    </string-array>
+
+    <!--Menu items.-->
+    <string name="history" translatable="false">История</string>
+    <string name="settings" translatable="false">Настройки</string>
+
+</resources>
