@@ -10,56 +10,59 @@ import android.widget.TextView;
 
 import com.example.android.jewelery.data.CalculateData;
 import com.example.android.jewelery.data.MainData;
-import com.example.android.jewelery.databinding.ResultsBinding;
+import com.example.android.jewelery.databinding.ActivityResultsBinding;
 
-/**
- * Created by milju on 7/19/2017.
- */
 
 public class ResultsActivity extends AppCompatActivity{
 
 
-    ResultsBinding rBinding;
+    private ActivityResultsBinding mBinding;
     MainData data = new MainData();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.results);
+        setContentView(R.layout.activity_results);
 
-        rBinding = DataBindingUtil.setContentView(this, R.layout.results);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_results);
 
         getData();
         calculateResult();
         displayData();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        displayData();
+    }
+
     private void displayData() {
-        rBinding.resultsWeight.setText(String.valueOf(data.finalWeight));
-        rBinding.resultsAvaWeightMetal.setText(String.valueOf(data.avaWeight));
+        mBinding.textWeightResults.setText(String.valueOf(data.finalWeight));
+        mBinding.textAvaWeightResults.setText(String.valueOf(data.avaWeight));
 
-        if (data.avaCopperPercent < data.finalCopperPercent) {
-            rBinding.resultsCopperLabel.setText("Добавить меди");
+        if (data.avaCopper < data.finalCopper) {
+            mBinding.textCopperResultsLabel.setText("Добавить меди");
         } else {
-            rBinding.resultsCopperLabel.setText("Убрать меди");
+            mBinding.textCopperResultsLabel.setText("Убрать меди");
         }
-        rBinding.resultsCopper.setText(String.valueOf(data.finalCopper));
+        mBinding.textCopperResults.setText(String.valueOf(data.finalCopper));
 
-        if (data.avaSilverPercent < data.finalSilverPercent) {
-            rBinding.resultsSilverLabel.setText("Добавить серебра");
+        if (data.avaSilver < data.finalSilver) {
+            mBinding.textSilverResultsLabel.setText("Добавить серебра");
         } else {
-            rBinding.resultsSilverLabel.setText("Убрать серебра");
+            mBinding.textSilverResultsLabel.setText("Убрать серебра");
         }
-        rBinding.resultsSilver.setText(String.valueOf(data.finalSilver));
+        mBinding.textSilverResults.setText(String.valueOf(data.finalSilver));
     }
 
     private void getData() {
-        SharedPreferences mainPreferences = getSharedPreferences(MainActivity.PREFS_NAME, 0);
+        SharedPreferences mainPreferences = getSharedPreferences(MainActivity.PREF_AVA, 0);
         data.avaWeight = mainPreferences.getFloat("avaWeight", 6);
         data.avaProba = mainPreferences.getFloat("avaProba", 750);
         data.avaColor = mainPreferences.getString("avaColor", "Красный");
 
-        SharedPreferences extraPreferences = getSharedPreferences(ExtraActivity.PREFS_NAME, 0);
+        SharedPreferences extraPreferences = getSharedPreferences(ExtraActivity.PREF_ADD_AND_DESIRED_DATA, 0);
         data.extraWeight = extraPreferences.getFloat("addWeight", 6);
         data.extraProba = extraPreferences.getFloat("addProba", 999.9f);
         data.desiredProba = extraPreferences.getFloat("desiredProba", 850);
@@ -110,8 +113,7 @@ public class ResultsActivity extends AppCompatActivity{
 
     }
 
-
-    public void testMainLayout(View view) {
+    public void returnToMainActivity(View view) {
         Intent mainIntent = new Intent(ResultsActivity.this, MainActivity.class);
         startActivity(mainIntent);
     }

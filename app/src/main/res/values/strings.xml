@@ -11,5 +11,9 @@
     <!--Menu items.-->
     <string name="history" translatable="false">История</string>
     <string name="settings" translatable="false">Настройки</string>
+    <string name="activity_result_title">Результаты</string>
+    <string name="return_to_main_button_text">Далее</string>
+    <string name="weight_results_label">Итоговый вес</string>
+    <string name="ava_weight_results_label">Вес имеющегося металла</string>
 
 </resources>

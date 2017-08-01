@@ -12,60 +12,60 @@
 
 
         <TextView
-            android:id="@+id/resultsSilver"
+            android:id="@+id/text_silver_results"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:text="0,64 г"
-            app:layout_constraintLeft_toRightOf="@+id/avaMetalTitle"
+            tools:text="0,64"
+            app:layout_constraintLeft_toRightOf="@+id/text_results_title"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintHorizontal_bias="0.512"
-            app:layout_constraintTop_toTopOf="@+id/resultsSilverLabel"
+            app:layout_constraintTop_toTopOf="@+id/text_silver_results_label"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/resultsSilverLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/text_silver_results_label"
             android:layout_marginBottom="0dp" />
 
         <TextView
-            android:id="@+id/resultsSilverLabel"
+            android:id="@+id/text_silver_results_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:text="Добавить серебра"
-            app:layout_constraintLeft_toLeftOf="@+id/resultsWeightLabel"
+            tools:text="Добавить серебра"
+            app:layout_constraintLeft_toLeftOf="@+id/text_weight_results_label"
             android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/resultsCopperLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/text_copper_results_label" />
 
         <TextView
-            android:id="@+id/resultsCopper"
+            android:id="@+id/text_copper_results"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:text="0,64 г"
-            app:layout_constraintLeft_toRightOf="@+id/avaMetalTitle"
+            tools:text="0,64"
+            app:layout_constraintLeft_toRightOf="@+id/text_results_title"
             android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/resultsCopperLabel"
+            app:layout_constraintTop_toTopOf="@+id/text_copper_results_label"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/resultsCopperLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/text_copper_results_label"
             android:layout_marginBottom="0dp" />
 
         <TextView
-            android:id="@+id/resultsCopperLabel"
+            android:id="@+id/text_copper_results_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:text="Убрать меди"
-            app:layout_constraintLeft_toLeftOf="@+id/resultsWeightLabel"
+            tools:text="Убрать меди"
+            app:layout_constraintLeft_toLeftOf="@+id/text_weight_results_label"
             android:layout_marginTop="33dp"
-            app:layout_constraintTop_toBottomOf="@+id/resultsAvaWeightMetalLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/text_ava_weight_results_label" />
 
         <TextView
-            android:id="@+id/avaMetalTitle"
+            android:id="@+id/text_results_title"
             android:layout_width="119dp"
             android:layout_height="34dp"
-            android:text="Результаты"
-            android:textSize="20dp"
+            android:text="@string/activity_result_title"
+            android:textSize="20sp"
             android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginLeft="8dp"
@@ -76,11 +76,11 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/horizontalDivider" />
+            app:layout_constraintBottom_toTopOf="@+id/divider_results_horizontal" />
 
 
         <ImageView
-            android:id="@+id/horizontalDivider"
+            android:id="@+id/divider_results_horizontal"
             android:layout_width="385dp"
             android:layout_height="3dp"
             android:background="@color/colorBlack"
@@ -97,11 +97,11 @@
 
 
         <Button
-            android:id="@+id/resultsButton"
+            android:id="@+id/button_return_to_main"
             android:layout_width="232dp"
             android:layout_height="60dp"
-            android:text="Далее"
-            android:onClick="testMainLayout"
+            android:text="@string/return_to_main_button_text"
+            android:onClick="returnToMainActivity"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="8dp"
@@ -110,57 +110,57 @@
             app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
-            android:id="@+id/resultsWeight"
+            android:id="@+id/text_weight_results"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="15,6 г"
-            app:layout_constraintLeft_toRightOf="@+id/avaMetalTitle"
+            tools:text="15,6 "
+            app:layout_constraintLeft_toRightOf="@+id/text_results_title"
             android:layout_marginLeft="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/resultsWeightLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/text_weight_results_label"
             android:layout_marginBottom="0dp"
-            app:layout_constraintTop_toTopOf="@+id/resultsWeightLabel"
+            app:layout_constraintTop_toTopOf="@+id/text_weight_results_label"
             android:layout_marginTop="8dp"
             app:layout_constraintVertical_bias="1.0"
             android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent" />
 
         <TextView
-            android:id="@+id/resultsAvaWeightMetal"
+            android:id="@+id/text_ava_weight_results"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:text="6 г"
+            tools:text="6"
             app:layout_constraintHorizontal_bias="0.512"
-            app:layout_constraintLeft_toRightOf="@+id/avaMetalTitle"
+            app:layout_constraintLeft_toRightOf="@+id/text_results_title"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/resultsAvaWeightMetalLabel"
+            app:layout_constraintTop_toTopOf="@+id/text_ava_weight_results_label"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/resultsAvaWeightMetalLabel"
+            app:layout_constraintBottom_toBottomOf="@+id/text_ava_weight_results_label"
             android:layout_marginBottom="0dp" />
 
         <TextView
-            android:id="@+id/resultsWeightLabel"
+            android:id="@+id/text_weight_results_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Итоговый вес"
-            app:layout_constraintRight_toLeftOf="@+id/avaMetalTitle"
+            android:text="@string/weight_results_label"
+            app:layout_constraintRight_toLeftOf="@+id/text_results_title"
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="37dp"
-            app:layout_constraintTop_toBottomOf="@+id/horizontalDivider"
+            app:layout_constraintTop_toBottomOf="@+id/divider_results_horizontal"
             app:layout_constraintHorizontal_bias="0.307" />
 
         <TextView
-            android:id="@+id/resultsAvaWeightMetalLabel"
+            android:id="@+id/text_ava_weight_results_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
-            android:text="Вес имеющегося металла"
-            app:layout_constraintLeft_toLeftOf="@+id/resultsWeightLabel"
+            android:text="@string/ava_weight_results_label"
+            app:layout_constraintLeft_toLeftOf="@+id/text_weight_results_label"
             android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/resultsWeightLabel" />
+            app:layout_constraintTop_toBottomOf="@+id/text_weight_results_label" />
 
     </android.support.constraint.ConstraintLayout>
 

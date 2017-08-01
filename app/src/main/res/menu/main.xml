@@ -9,7 +9,7 @@
         android:title="@string/history"
         />
 
-    <!-- TODO (1) settings view for themes customization-->
+    <!-- TODO settings view for themes customization-->
     <!--<item-->
         <!--android:id="@+id/action_settings"-->
         <!--app:showAsAction="ifRoom"-->

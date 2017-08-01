@@ -28,7 +28,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachParentImmediatly = false;
         View view = inflater.inflate(
-                R.layout.history_list_item, viewGroup, shouldAttachParentImmediatly);
+                R.layout.item_history, viewGroup, shouldAttachParentImmediatly);
         HistoryViewHolder viewHolder = new HistoryViewHolder(view);
         return viewHolder;
     }
