@@ -15,17 +15,19 @@ import com.example.android.jewelery.R;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>{
 
+    private Context mContext;
     // How many views the adapter will hold.
-    private int hNumberItems;
+    private int mCount;
 
-    public HistoryAdapter(int numberOfItems) {
-        hNumberItems = numberOfItems;
+    public HistoryAdapter(Context context, int count) {
+        this.mContext = context;
+        this.mCount = count;
     }
+
 
     @Override
     public HistoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        Context context = viewGroup.getContext();
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(mContext);
         boolean shouldAttachParentImmediatly = false;
         View view = inflater.inflate(
                 R.layout.item_history, viewGroup, shouldAttachParentImmediatly);
@@ -40,7 +42,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
     @Override
     public int getItemCount() {
-        return hNumberItems;
+        return mCount;
     }
 
     class HistoryViewHolder extends RecyclerView.ViewHolder {
@@ -50,7 +52,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         public HistoryViewHolder(View itemView) {
             super(itemView);
 
-            listItemHistoryView = (TextView) itemView.findViewById(R.id.history_item);
+            listItemHistoryView = (TextView) itemView.findViewById(R.id.text_ava_proba);
         }
 
         void bind (int listIndex) {

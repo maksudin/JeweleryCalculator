@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Jewelery</string>
+    <string name="title_activity_history">История</string>
 
     <!--Spinner values.-->
     <string-array name="colors_array">
@@ -9,11 +10,12 @@
     </string-array>
 
     <!--Menu items.-->
-    <string name="history" translatable="false">История</string>
-    <string name="settings" translatable="false">Настройки</string>
-    <string name="activity_result_title">Результаты</string>
-    <string name="return_to_main_button_text">Далее</string>
-    <string name="weight_results_label">Итоговый вес</string>
-    <string name="ava_weight_results_label">Вес имеющегося металла</string>
+    <string name="action_history" translatable="false">История</string>
+    <string name="action_settings" translatable="false">Настройки</string>
+    <string name="title_activity_result">Результаты</string>
+    <string name="text_button">Далее</string>
+    <string name="text_weight_results_label">Итоговый вес</string>
+    <string name="text_ava_weight_results_label">Вес имеющегося металла</string>
+    <string name="text_button_calculate">Посчитать</string>
 
 </resources>
