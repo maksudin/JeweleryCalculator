@@ -22,12 +22,13 @@ public class TestUtil {
         List<ContentValues> list = new ArrayList<ContentValues>();
         ContentValues cv = new ContentValues();
         cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_AVA_WEIGHT, 6f);
-//        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_AVA_PROBA, 585f);
-//        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_AVA_COLOR, "Красный");
-//        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_ADD_WEIGHT, 5f);
-//        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_ADD_PROBA, 999.9f);
-//        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_DESIRED_PROBA, 585f);
-//        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_DESIRED_COLOR, "Жёлтый");
+        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_AVA_PROBA, 585f);
+        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_AVA_COLOR, "Красный");
+        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_ADD_WEIGHT, 5f);
+        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_ADD_PROBA, 999.9f);
+        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_DESIRED_PROBA, 585f);
+        cv.put(HistoryReaderContract.HistoryInputEntry.COLUMN_INPUT_DESIRED_COLOR, "Жёлтый");
+        list.add(cv);
         list.add(cv);
         list.add(cv);
         list.add(cv);
@@ -42,12 +43,10 @@ public class TestUtil {
             for (ContentValues c : list) {
                 db.insert(HistoryReaderContract.HistoryInputEntry.TABLE_NAME, null, c);
             }
-
             db.setTransactionSuccessful();
-        } catch (SQLException e) {
-            Log.v("Hi", "HELLLLOOOOOOOOO");
-        } finally {
             db.endTransaction();
+        } catch (SQLException e) {
+            Log.v(TestUtil.class.getSimpleName(), "Db transaction failed");
         }
 
     }

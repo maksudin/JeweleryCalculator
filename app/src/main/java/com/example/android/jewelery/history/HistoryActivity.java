@@ -1,12 +1,15 @@
 package com.example.android.jewelery.history;
 
+import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.android.jewelery.R;
 import com.example.android.jewelery.data.TestUtil;
@@ -34,12 +37,9 @@ public class HistoryActivity extends AppCompatActivity {
         HistoryRecyclerView.setLayoutManager(layoutManager);
         HistoryRecyclerView.setHasFixedSize(true);
 
-
-        HistoryDbHelper dbHelper = new HistoryDbHelper(this);
-        mDb = dbHelper.getWritableDatabase();
-
-
+        mDb = new HistoryDbHelper(this).getWritableDatabase();
         TestUtil.insertFakeData(mDb);
+//        insertData();
 
         Cursor allHistory = getAllHistory();
         mAdapter = new HistoryAdapter(this, allHistory.getCount());
@@ -52,6 +52,5 @@ public class HistoryActivity extends AppCompatActivity {
                 null, null, null, null, null, null
         );
     }
-
 
 }

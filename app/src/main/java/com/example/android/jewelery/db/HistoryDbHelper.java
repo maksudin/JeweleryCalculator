@@ -25,12 +25,12 @@ public class HistoryDbHelper extends SQLiteOpenHelper{
                 HistoryInputEntry.TABLE_NAME + "(" +
                 HistoryInputEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 HistoryInputEntry.COLUMN_INPUT_AVA_WEIGHT + " FLOAT NOT NULL, " +
-//                HistoryInputEntry.COLUMN_INPUT_AVA_PROBA + " FLOAT NOT NULL, " +
-//                HistoryInputEntry.COLUMN_INPUT_AVA_COLOR + " TEXT NOT NULL, " +
-//                HistoryInputEntry.COLUMN_INPUT_ADD_WEIGHT + " FLOAT NOT NULL, " +
-//                HistoryInputEntry.COLUMN_INPUT_ADD_PROBA + " FLOAT NOT NULL, " +
-//                HistoryInputEntry.COLUMN_INPUT_DESIRED_PROBA + "FLOAT NOT NULL, " +
-//                HistoryInputEntry.COLUMN_INPUT_DESIRED_COLOR + " TEXT NOT NULL" +
+                HistoryInputEntry.COLUMN_INPUT_AVA_PROBA + " FLOAT NOT NULL, " +
+                HistoryInputEntry.COLUMN_INPUT_AVA_COLOR + " TEXT NOT NULL, " +
+                HistoryInputEntry.COLUMN_INPUT_ADD_WEIGHT + " FLOAT NOT NULL, " +
+                HistoryInputEntry.COLUMN_INPUT_ADD_PROBA + " FLOAT NOT NULL, " +
+                HistoryInputEntry.COLUMN_INPUT_DESIRED_PROBA + " FLOAT NOT NULL, " +
+                HistoryInputEntry.COLUMN_INPUT_DESIRED_COLOR + " TEXT NOT NULL" +
                 "); ";
 
         final String SQL_CREATE_HISTORY_RESULT_TABLE = "CREATE TABLE " +
