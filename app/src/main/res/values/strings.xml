@@ -17,5 +17,9 @@
     <string name="text_weight_results_label">Итоговый вес</string>
     <string name="text_ava_weight_results_label">Вес имеющегося металла</string>
     <string name="text_button_calculate">Посчитать</string>
+    <string name="action_clear_history">Очистить</string>
+    <string name="title_ava_info">Имеющийся металлы</string>
+    <string name="title_activity_main">Имеющийся металл</string>
+    <string name="title_desired_result">Желаемый результат</string>
 
 </resources>

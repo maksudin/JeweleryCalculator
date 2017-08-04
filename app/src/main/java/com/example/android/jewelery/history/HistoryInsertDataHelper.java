@@ -38,7 +38,7 @@ public class HistoryInsertDataHelper {
             db.setTransactionSuccessful();
             db.endTransaction();
         } catch (SQLException e) {
-            Log.v(HistoryInsertDataHelper.class.getSimpleName(), "Db transaction failed");
+            Log.v(HistoryInsertDataHelper.class.getSimpleName(), "Db insertData transaction failed");
         }
     }
 
@@ -62,5 +62,22 @@ public class HistoryInsertDataHelper {
 
     }
 
+    public static void deleteAllRows(SQLiteDatabase db) {
+
+        try {
+            db.beginTransaction();
+            // Clear the table first.
+            db.delete(HistoryReaderContract.HistoryInputEntry.TABLE_NAME, null, null);
+            db.setTransactionSuccessful();
+            db.endTransaction();
+        } catch (SQLException e) {
+            Log.v(HistoryInsertDataHelper.class.getSimpleName(), "Db deleteAllRows transaction failed");
+        }
+    }
+
+
+
 
 }
+
+

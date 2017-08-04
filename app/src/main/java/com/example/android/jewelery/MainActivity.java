@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int menuItemId = item.getItemId();
-        if (menuItemId == R.id.menu_history) {
+        if (menuItemId == R.id.action_history) {
             Intent historyIntent = new Intent(MainActivity.this, HistoryActivity.class);
             startActivity(historyIntent);
             return true;

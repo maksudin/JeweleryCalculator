@@ -41,6 +41,7 @@ public class ResultsActivity extends AppCompatActivity{
         Cursor cursor = mDb.query(
                 HistoryReaderContract.HistoryInputEntry.TABLE_NAME,
                 null, null, null, null, null, null, null);
+
         if (cursor.getCount() > 14) {
             HistoryInsertDataHelper.deleteOneRow(mDb);
         }
@@ -55,22 +56,22 @@ public class ResultsActivity extends AppCompatActivity{
     }
 
     private void displayData() {
-        mBinding.textWeightResults.setText(String.valueOf(data.finalWeight));
-        mBinding.textAvaWeightResults.setText(String.valueOf(data.avaWeight));
+        mBinding.resultsInfo.textWeightResults.setText(String.valueOf(data.finalWeight));
+        mBinding.resultsInfo.textAvaWeightResults.setText(String.valueOf(data.avaWeight));
 
         if (data.avaCopper < data.finalCopper) {
-            mBinding.textCopperResultsLabel.setText("Добавить меди");
+            mBinding.resultsInfo.textCopperResultsLabel.setText("Добавить меди");
         } else {
-            mBinding.textCopperResultsLabel.setText("Убрать меди");
+            mBinding.resultsInfo.textCopperResultsLabel.setText("Убрать меди");
         }
-        mBinding.textCopperResults.setText(String.valueOf(data.finalCopper));
+        mBinding.resultsInfo.textCopperResults.setText(String.valueOf(data.finalCopper));
 
         if (data.avaSilver < data.finalSilver) {
-            mBinding.textSilverResultsLabel.setText("Добавить серебра");
+            mBinding.resultsInfo.textSilverResultsLabel.setText("Добавить серебра");
         } else {
-            mBinding.textSilverResultsLabel.setText("Убрать серебра");
+            mBinding.resultsInfo.textSilverResultsLabel.setText("Убрать серебра");
         }
-        mBinding.textSilverResults.setText(String.valueOf(data.finalSilver));
+        mBinding.resultsInfo.textSilverResults.setText(String.valueOf(data.finalSilver));
     }
 
     private void getData() {
