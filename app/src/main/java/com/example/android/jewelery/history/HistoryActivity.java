@@ -38,11 +38,11 @@ public class HistoryActivity extends AppCompatActivity {
         HistoryRecyclerView.setHasFixedSize(true);
 
         mDb = new HistoryDbHelper(this).getWritableDatabase();
-        TestUtil.insertFakeData(mDb);
+//        TestUtil.insertFakeData(mDb);
 //        insertData();
 
-        Cursor allHistory = getAllHistory();
-        mAdapter = new HistoryAdapter(this, allHistory.getCount());
+        Cursor cursor = getAllHistory();
+        mAdapter = new HistoryAdapter(this, cursor);
         HistoryRecyclerView.setAdapter(mAdapter);
     }
 

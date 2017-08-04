@@ -1,6 +1,7 @@
 package com.example.android.jewelery.history;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.android.jewelery.R;
+import com.example.android.jewelery.db.HistoryReaderContract;
+
+import org.w3c.dom.Text;
+
+import static com.example.android.jewelery.db.HistoryReaderContract.*;
 
 /**
  * Created by milju on 7/28/2017.
@@ -15,50 +21,73 @@ import com.example.android.jewelery.R;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>{
 
+    private Cursor mCursor;
     private Context mContext;
-    // How many views the adapter will hold.
-    private int mCount;
 
-    public HistoryAdapter(Context context, int count) {
+    public HistoryAdapter(Context context, Cursor cursor) {
         this.mContext = context;
-        this.mCount = count;
+        this.mCursor = cursor;
     }
 
 
     @Override
     public HistoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        boolean shouldAttachParentImmediatly = false;
-        View view = inflater.inflate(
-                R.layout.item_history, viewGroup, shouldAttachParentImmediatly);
+        View view = inflater.inflate( R.layout.item_history, viewGroup, false);
         HistoryViewHolder viewHolder = new HistoryViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(HistoryViewHolder holder, int position) {
-        holder.bind(position);
+
+        if (!mCursor.moveToPosition(position)) return;
+
+        float avaProba = mCursor.getFloat(
+                mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_AVA_PROBA)
+        );
+        String avaColor = mCursor.getString(
+                mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_AVA_COLOR)
+        );
+        float addProba = mCursor.getFloat(
+                mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_ADD_PROBA)
+        );
+        float desiredProba = mCursor.getFloat(
+                mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_DESIRED_PROBA)
+        );
+        String desiredColor = mCursor.getString(
+                mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_DESIRED_COLOR)
+        );
+        holder.avaProbaTextView.setText(String.valueOf(avaProba));
+        holder.avaColorTextView.setText(avaColor);
+        holder.addProbaTextView.setText(String.valueOf(addProba));
+        holder.desiredProbaTextView.setText(String.valueOf(desiredProba));
+        holder.desiredColorTextView.setText(desiredColor);
     }
 
     @Override
     public int getItemCount() {
-        return mCount;
+        return mCursor.getCount();
     }
 
     class HistoryViewHolder extends RecyclerView.ViewHolder {
 
-        TextView listItemHistoryView;
+        TextView avaProbaTextView;
+        TextView avaColorTextView;
+        TextView addProbaTextView;
+        TextView desiredProbaTextView;
+        TextView desiredColorTextView;
 
         public HistoryViewHolder(View itemView) {
             super(itemView);
 
-            listItemHistoryView = (TextView) itemView.findViewById(R.id.text_ava_proba);
-        }
+            avaProbaTextView = (TextView) itemView.findViewById(R.id.text_ava_proba);
+            avaColorTextView = (TextView) itemView.findViewById(R.id.text_ava_color);
+            addProbaTextView = (TextView) itemView.findViewById(R.id.text_add_proba);
+            desiredProbaTextView = (TextView) itemView.findViewById(R.id.text_results_proba);
+            desiredColorTextView = (TextView) itemView.findViewById(R.id.text_results_color);
 
-        void bind (int listIndex) {
-            listItemHistoryView.setText(String.valueOf(listIndex));
         }
-
     }
 
 }

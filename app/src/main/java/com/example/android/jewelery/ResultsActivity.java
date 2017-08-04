@@ -2,6 +2,8 @@ package com.example.android.jewelery;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +13,9 @@ import android.widget.TextView;
 import com.example.android.jewelery.data.CalculateData;
 import com.example.android.jewelery.data.MainData;
 import com.example.android.jewelery.databinding.ActivityResultsBinding;
+import com.example.android.jewelery.db.HistoryDbHelper;
+import com.example.android.jewelery.db.HistoryReaderContract;
+import com.example.android.jewelery.history.HistoryInsertDataHelper;
 
 
 public class ResultsActivity extends AppCompatActivity{
@@ -18,6 +23,8 @@ public class ResultsActivity extends AppCompatActivity{
 
     private ActivityResultsBinding mBinding;
     MainData data = new MainData();
+
+    private SQLiteDatabase mDb;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,16 @@ public class ResultsActivity extends AppCompatActivity{
         getData();
         calculateResult();
         displayData();
+
+        mDb = new HistoryDbHelper(this).getWritableDatabase();
+        Cursor cursor = mDb.query(
+                HistoryReaderContract.HistoryInputEntry.TABLE_NAME,
+                null, null, null, null, null, null, null);
+        if (cursor.getCount() > 14) {
+            HistoryInsertDataHelper.deleteOneRow(mDb);
+        }
+
+        HistoryInsertDataHelper.insertData(mDb, data);
     }
 
     @Override

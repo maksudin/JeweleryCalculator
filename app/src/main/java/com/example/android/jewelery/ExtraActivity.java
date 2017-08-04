@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
-import android.widget.Toast;
+
 
 
 /**
@@ -24,6 +24,7 @@ public class ExtraActivity extends AppCompatActivity{
     private Spinner mDesiredColor;
 
     public static final String PREF_ADD_AND_DESIRED_DATA = "PREF_ADD_AND_DESIRED";
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

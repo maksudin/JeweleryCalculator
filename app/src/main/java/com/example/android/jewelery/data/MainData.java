@@ -26,4 +26,5 @@ public class MainData {
     public float avaSilver;
     public float finalCopper;
     public float finalSilver;
+
 }
