@@ -1,10 +1,12 @@
 package com.example.android.jewelery.history;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -24,11 +26,18 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     private Cursor mCursor;
     private Context mContext;
 
-    public HistoryAdapter(Context context, Cursor cursor) {
+    private HistoryAdapterOnClickListener mClickHandler;
+
+    public HistoryAdapter(Context context, Cursor cursor, HistoryAdapterOnClickListener clickHandler) {
         this.mContext = context;
         this.mCursor = cursor;
+        this.mClickHandler = clickHandler;
     }
 
+
+    public interface HistoryAdapterOnClickListener {
+        void onClick(int position);
+    }
 
     @Override
     public HistoryViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -70,7 +79,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         return mCursor.getCount();
     }
 
-    class HistoryViewHolder extends RecyclerView.ViewHolder {
+    class HistoryViewHolder extends RecyclerView.ViewHolder implements OnClickListener{
 
         TextView avaProbaTextView;
         TextView avaColorTextView;
@@ -87,6 +96,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
             desiredProbaTextView = (TextView) itemView.findViewById(R.id.text_results_proba);
             desiredColorTextView = (TextView) itemView.findViewById(R.id.text_results_color);
 
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int adapterPosition = getAdapterPosition();
+            mClickHandler.onClick(adapterPosition);
         }
     }
 

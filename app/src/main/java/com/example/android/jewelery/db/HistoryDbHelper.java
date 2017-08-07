@@ -41,11 +41,11 @@ public class HistoryDbHelper extends SQLiteOpenHelper{
                 HistoryResultEntry.COLUMN_RESULT_FINAL_COPPER + " FLOAT NOT NULL, " +
                 HistoryResultEntry.COLUMN_RESULT_AVA_SILVER + " FLOAT NOT NULL, " +
                 HistoryResultEntry.COLUMN_RESULT_FINAL_SILVER + " FLOAT NOT NULL, " +
-                "FOREIGN KEY(" + HistoryResultEntry._ID + ") REFERENCES " +
+                " FOREIGN KEY(" + HistoryResultEntry._ID + ") REFERENCES " +
                 HistoryInputEntry.TABLE_NAME + "(" + HistoryInputEntry._ID + ")" +
                 "); ";
         db.execSQL(SQL_CREATE_HISTORY_INPUT_TABLE);
-//        db.execSQL(SQL_CREATE_HISTORY_RESULT_TABLE);
+        db.execSQL(SQL_CREATE_HISTORY_RESULT_TABLE);
 
     }
 
