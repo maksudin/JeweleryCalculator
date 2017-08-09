@@ -15,6 +15,9 @@ import com.example.android.jewelery.db.HistoryReaderContract;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.example.android.jewelery.db.HistoryReaderContract.*;
 
 /**
@@ -26,7 +29,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     private Cursor mCursor;
     private Context mContext;
 
-    private HistoryAdapterOnClickListener mClickHandler;
+    private static List<Integer> mIdList = new ArrayList<>();
+    private final HistoryAdapterOnClickListener mClickHandler;
 
     public HistoryAdapter(Context context, Cursor cursor, HistoryAdapterOnClickListener clickHandler) {
         this.mContext = context;
@@ -52,7 +56,12 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
 
         if (!mCursor.moveToPosition(position)) return;
 
-        float avaProba = mCursor.getFloat(
+        int id = mCursor.getInt(
+                mCursor.getColumnIndex(HistoryInputEntry._ID)
+        );
+        mIdList.add(id);
+
+        int avaProba = mCursor.getInt(
                 mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_AVA_PROBA)
         );
         String avaColor = mCursor.getString(
@@ -106,4 +115,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         }
     }
 
+    public static List<Integer> getmIdList() {
+        return mIdList;
+    }
 }

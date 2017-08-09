@@ -9,12 +9,12 @@ import com.example.android.jewelery.db.HistoryReaderContract.*;
  * Created by milju on 7/31/2017.
  */
 
-public class HistoryDbHelper extends SQLiteOpenHelper{
+public class DbHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "history.db";
     private static final int DATABASE_VERSION = 1;
 
-    public HistoryDbHelper(Context context) {
+    public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

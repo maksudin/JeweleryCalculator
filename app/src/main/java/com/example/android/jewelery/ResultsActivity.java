@@ -8,14 +8,13 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.android.jewelery.data.CalculateData;
 import com.example.android.jewelery.data.MainData;
 import com.example.android.jewelery.databinding.ActivityResultsBinding;
-import com.example.android.jewelery.db.HistoryDbHelper;
+import com.example.android.jewelery.db.DbHelper;
 import com.example.android.jewelery.db.HistoryReaderContract;
-import com.example.android.jewelery.history.HistoryInsertDataHelper;
+import com.example.android.jewelery.db.InsertDataHelper;
 
 
 public class ResultsActivity extends AppCompatActivity{
@@ -37,16 +36,17 @@ public class ResultsActivity extends AppCompatActivity{
         calculateResult();
         displayData();
 
-        mDb = new HistoryDbHelper(this).getWritableDatabase();
+        mDb = new DbHelper(this).getWritableDatabase();
         Cursor cursor = mDb.query(
                 HistoryReaderContract.HistoryInputEntry.TABLE_NAME,
                 null, null, null, null, null, null, null);
 
         if (cursor.getCount() > 14) {
-            HistoryInsertDataHelper.deleteOneRow(mDb);
+            InsertDataHelper.deleteOneRow(mDb);
         }
 
-        HistoryInsertDataHelper.insertData(mDb, data);
+        InsertDataHelper.insertHistoryData(mDb, data);
+        InsertDataHelper.insertResultData(mDb, data);
     }
 
     @Override

@@ -1,10 +1,13 @@
 package com.example.android.jewelery.data;
 
+import java.util.List;
+
 /**
  * Created by milju on 7/20/2017.
  */
 
 public class MainData {
+
 
     public float avaWeight;
     public float extraWeight;
