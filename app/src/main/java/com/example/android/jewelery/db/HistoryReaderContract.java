@@ -12,6 +12,7 @@ public class HistoryReaderContract {
 
     public static class HistoryInputEntry implements BaseColumns {
         public static final String TABLE_NAME = "inputData";
+        public static final String COLUMN_ID = "i_id";
         public static final String COLUMN_INPUT_AVA_WEIGHT = "avaWeight";
         public static final String COLUMN_INPUT_AVA_PROBA = "avaProba";
         public static final String COLUMN_INPUT_AVA_COLOR = "avaColor";
@@ -23,10 +24,12 @@ public class HistoryReaderContract {
 
     public static class HistoryResultEntry implements BaseColumns {
         public static final String TABLE_NAME = "resultsData";
+        public static final String COLUMN_ID = "r_id";
         public static final String COLUMN_RESULT_FINAL_WEIGHT = "finalWeight";
-        public static final String COLUMN_RESULT_AVA_COPPER = "avaCopper";
+        public static final String COLUMN_RESULT_AVA_WEIGHT = "avaWeight";
+//        public static final String COLUMN_RESULT_AVA_COPPER = "avaCopper";
         public static final String COLUMN_RESULT_FINAL_COPPER = "finalCopper";
-        public static final String COLUMN_RESULT_AVA_SILVER = "avaSilver";
+//        public static final String COLUMN_RESULT_AVA_SILVER = "avaSilver";
         public static final String COLUMN_RESULT_FINAL_SILVER = "finalSilver";
 
     }

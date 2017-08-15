@@ -8,6 +8,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.android.jewelery.data.CalculateData;
 import com.example.android.jewelery.data.MainData;
@@ -15,12 +16,22 @@ import com.example.android.jewelery.databinding.ActivityResultsBinding;
 import com.example.android.jewelery.db.DbHelper;
 import com.example.android.jewelery.db.HistoryReaderContract;
 import com.example.android.jewelery.db.InsertDataHelper;
+import com.example.android.jewelery.details.DetailsActivity;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class ResultsActivity extends AppCompatActivity{
 
 
-    private ActivityResultsBinding mBinding;
+    @BindView(R.id.text_weight_results) TextView resultsWeight;
+    @BindView(R.id.text_ava_weight_results) TextView avaWeight;
+    @BindView(R.id.text_copper_results_label) TextView resultsCopperLabel;
+    @BindView(R.id.text_copper_results) TextView resultsCopper;
+    @BindView(R.id.text_silver_results_label) TextView resultsSilverLabel;
+    @BindView(R.id.text_silver_results) TextView resultsSilver;
+
     MainData data = new MainData();
 
     private SQLiteDatabase mDb;
@@ -29,8 +40,7 @@ public class ResultsActivity extends AppCompatActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_results);
+        ButterKnife.bind(this);
 
         getData();
         calculateResult();
@@ -56,22 +66,14 @@ public class ResultsActivity extends AppCompatActivity{
     }
 
     private void displayData() {
-        mBinding.resultsInfo.textWeightResults.setText(String.valueOf(data.finalWeight));
-        mBinding.resultsInfo.textAvaWeightResults.setText(String.valueOf(data.avaWeight));
+        resultsWeight.setText(String.valueOf(data.finalWeight));
+        avaWeight.setText(String.valueOf(data.avaWeight));
 
-        if (data.avaCopper < data.finalCopper) {
-            mBinding.resultsInfo.textCopperResultsLabel.setText("Добавить меди");
-        } else {
-            mBinding.resultsInfo.textCopperResultsLabel.setText("Убрать меди");
-        }
-        mBinding.resultsInfo.textCopperResults.setText(String.valueOf(data.finalCopper));
+        resultsCopperLabel.setText(data.finalCopper > 0 ? "Добавить меди" : "Убрать меди");
+        resultsCopper.setText(String.valueOf(data.finalCopper));
 
-        if (data.avaSilver < data.finalSilver) {
-            mBinding.resultsInfo.textSilverResultsLabel.setText("Добавить серебра");
-        } else {
-            mBinding.resultsInfo.textSilverResultsLabel.setText("Убрать серебра");
-        }
-        mBinding.resultsInfo.textSilverResults.setText(String.valueOf(data.finalSilver));
+        resultsSilverLabel.setText(data.finalSilver > 0 ? "Добавить серебра" : "Убрать серебра");
+        resultsSilver.setText(String.valueOf(data.finalSilver));
     }
 
     private void getData() {
@@ -132,7 +134,7 @@ public class ResultsActivity extends AppCompatActivity{
     }
 
     public void returnToMainActivity(View view) {
-        Intent mainIntent = new Intent(ResultsActivity.this, MainActivity.class);
+        Intent mainIntent = new Intent(this, MainActivity.class);
         startActivity(mainIntent);
     }
 }

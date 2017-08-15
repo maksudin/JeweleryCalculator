@@ -79,9 +79,10 @@ public class InsertDataHelper {
 
         ContentValues cv = new ContentValues();
         cv.put(HistoryResultEntry.COLUMN_RESULT_FINAL_WEIGHT, data.finalWeight);
-        cv.put(HistoryResultEntry.COLUMN_RESULT_AVA_COPPER, data.avaColor);
+        cv.put(HistoryResultEntry.COLUMN_RESULT_AVA_WEIGHT, data.avaWeight);
+//        cv.put(HistoryResultEntry.COLUMN_RESULT_AVA_COPPER, data.avaCopper);
         cv.put(HistoryResultEntry.COLUMN_RESULT_FINAL_COPPER, data.finalCopper);
-        cv.put(HistoryResultEntry.COLUMN_RESULT_AVA_SILVER, data.avaSilver);
+//        cv.put(HistoryResultEntry.COLUMN_RESULT_AVA_SILVER, data.avaSilver);
         cv.put(HistoryResultEntry.COLUMN_RESULT_FINAL_SILVER, data.finalSilver);
 
         try {

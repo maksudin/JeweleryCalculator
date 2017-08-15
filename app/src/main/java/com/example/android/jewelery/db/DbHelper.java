@@ -12,7 +12,7 @@ import com.example.android.jewelery.db.HistoryReaderContract.*;
 public class DbHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "history.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public DbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -23,7 +23,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
         final String SQL_CREATE_HISTORY_INPUT_TABLE = "CREATE TABLE " +
                 HistoryInputEntry.TABLE_NAME + "(" +
-                HistoryInputEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                HistoryInputEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 HistoryInputEntry.COLUMN_INPUT_AVA_WEIGHT + " FLOAT NOT NULL, " +
                 HistoryInputEntry.COLUMN_INPUT_AVA_PROBA + " FLOAT NOT NULL, " +
                 HistoryInputEntry.COLUMN_INPUT_AVA_COLOR + " TEXT NOT NULL, " +
@@ -35,14 +35,15 @@ public class DbHelper extends SQLiteOpenHelper{
 
         final String SQL_CREATE_HISTORY_RESULT_TABLE = "CREATE TABLE " +
                 HistoryResultEntry.TABLE_NAME + " (" +
-                HistoryResultEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                HistoryResultEntry.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 HistoryResultEntry.COLUMN_RESULT_FINAL_WEIGHT + " FLOAT NOT NULL, " +
-                HistoryResultEntry.COLUMN_RESULT_AVA_COPPER + " FLOAT NOT NULL, " +
+                HistoryResultEntry.COLUMN_RESULT_AVA_WEIGHT + " FLOAT NOT NULL, " +
+//                HistoryResultEntry.COLUMN_RESULT_AVA_COPPER + " FLOAT NOT NULL, " +
                 HistoryResultEntry.COLUMN_RESULT_FINAL_COPPER + " FLOAT NOT NULL, " +
-                HistoryResultEntry.COLUMN_RESULT_AVA_SILVER + " FLOAT NOT NULL, " +
+//                HistoryResultEntry.COLUMN_RESULT_AVA_SILVER + " FLOAT NOT NULL, " +
                 HistoryResultEntry.COLUMN_RESULT_FINAL_SILVER + " FLOAT NOT NULL, " +
-                " FOREIGN KEY(" + HistoryResultEntry._ID + ") REFERENCES " +
-                HistoryInputEntry.TABLE_NAME + "(" + HistoryInputEntry._ID + ")" +
+                " FOREIGN KEY(" + HistoryResultEntry.COLUMN_ID + ") REFERENCES " +
+                HistoryInputEntry.TABLE_NAME + "(" + HistoryInputEntry.COLUMN_ID + ")" +
                 "); ";
         db.execSQL(SQL_CREATE_HISTORY_INPUT_TABLE);
         db.execSQL(SQL_CREATE_HISTORY_RESULT_TABLE);
@@ -52,6 +53,7 @@ public class DbHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + HistoryInputEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + HistoryResultEntry.TABLE_NAME);
         onCreate(db);
     }
 }

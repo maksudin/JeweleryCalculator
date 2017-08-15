@@ -29,13 +29,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
     private Cursor mCursor;
     private Context mContext;
 
-    private static List<Integer> mIdList = new ArrayList<>();
+    private List<Integer> mIdList = new ArrayList<>();
     private final HistoryAdapterOnClickListener mClickHandler;
 
-    public HistoryAdapter(Context context, Cursor cursor, HistoryAdapterOnClickListener clickHandler) {
+    public HistoryAdapter(Context context,
+                          Cursor cursor,
+                          HistoryAdapterOnClickListener clickHandler,
+                          List<Integer> idList) {
         this.mContext = context;
         this.mCursor = cursor;
         this.mClickHandler = clickHandler;
+        this.mIdList = idList;
     }
 
 
@@ -57,7 +61,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         if (!mCursor.moveToPosition(position)) return;
 
         int id = mCursor.getInt(
-                mCursor.getColumnIndex(HistoryInputEntry._ID)
+                mCursor.getColumnIndex(HistoryInputEntry.COLUMN_ID)
         );
         mIdList.add(id);
 
@@ -76,7 +80,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         String desiredColor = mCursor.getString(
                 mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_DESIRED_COLOR)
         );
-        holder.avaProbaTextView.setText(String.valueOf(avaProba));
+        holder.avaProbaTextView.setText(String.valueOf(id));
         holder.avaColorTextView.setText(avaColor);
         holder.addProbaTextView.setText(String.valueOf(addProba));
         holder.desiredProbaTextView.setText(String.valueOf(desiredProba));
@@ -115,7 +119,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         }
     }
 
-    public static List<Integer> getmIdList() {
+    public List<Integer> getIdList() {
         return mIdList;
     }
 }

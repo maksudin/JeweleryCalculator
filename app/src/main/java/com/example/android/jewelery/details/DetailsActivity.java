@@ -1,12 +1,15 @@
 package com.example.android.jewelery.details;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.jewelery.R;
@@ -18,92 +21,131 @@ import com.example.android.jewelery.history.HistoryAdapter;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static com.example.android.jewelery.db.HistoryReaderContract.*;
 
 public class DetailsActivity extends AppCompatActivity {
 
+//  Input text views. {
+    @BindView(R.id.text_ava_weight) TextView mAvaWeight;
+    @BindView(R.id.text_ava_proba) TextView mAvaProba;
+    @BindView(R.id.text_ava_color) TextView mAvaColor;
+    @BindView(R.id.text_add_weight) TextView mAddWeight;
+    @BindView(R.id.text_add_proba) TextView mAddProba;
+    @BindView(R.id.text_desired_proba) TextView mDesiredProba;
+    @BindView(R.id.text_desired_color) TextView mDesiredColor;
+// }
 
-    private InputInfoBinding mInfoBinding;
-    private ResultsInfoBinding mResultsBinding;
+//  Result text views. {
+    @BindView(R.id.text_weight_results) TextView mFinalWeight;
+    @BindView(R.id.text_ava_weight_results) TextView mResultsAvaWeight;
+    @BindView(R.id.text_ava_weight_results_label) TextView mResultsAvaWeightLabel;
+    @BindView(R.id.text_copper_results_label) TextView mCopperLabel;
+    @BindView(R.id.text_copper_results) TextView mCopper;
+    @BindView(R.id.text_silver_results_label) TextView mSilverLabel;
+    @BindView(R.id.text_silver_results) TextView mSilver;
+// }
+
+
 
     private SQLiteDatabase mDb;
-    private Cursor mCursor;
+    private Cursor mInputCursor;
+    private Cursor mResultsCursor;
 
-    final private int POS = getIntent().getExtras().getInt("pos", 999);
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        final int INPUT_ID = intent.getIntExtra("inputId", -1);
+//        final String copperLabelText = intent.getStringExtra("copper");
+//        final String silverLabelText = intent.getStringExtra("silver");
+
 
         mDb = new DbHelper(this).getReadableDatabase();
 
-        mCursor = getAllInfo();
-        showInfo();
+        mInputCursor = getInputInfo(INPUT_ID);
+        mResultsCursor = getResultsInfo(INPUT_ID);
+        showInputInfo();
+        showResultsInfo();
     }
 
-    private void showInfo() {
+    private void showInputInfo() {
 
-        List<Integer> idList = HistoryAdapter.getmIdList();
+        mInputCursor.moveToFirst();
+        float  avaWeight = mInputCursor.getFloat(
+                mInputCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_AVA_WEIGHT)
+        );
+        float  avaProba = mInputCursor.getFloat(
+                mInputCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_AVA_PROBA)
+        );
+        String  avaColor = mInputCursor.getString(
+                mInputCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_AVA_COLOR)
+        );
+        float  addWeight = mInputCursor.getFloat(
+                mInputCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_ADD_WEIGHT)
+        );
+        float  addProba = mInputCursor.getFloat(
+                mInputCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_ADD_PROBA)
+        );
+        float  desiredProba = mInputCursor.getFloat(
+                mInputCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_DESIRED_PROBA)
+        );
+        String  desiredColor = mInputCursor.getString(
+                mInputCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_DESIRED_COLOR)
+        );
+        mAvaWeight.setText(String.valueOf(avaWeight));
+        mAvaProba.setText(String.valueOf(avaProba));
+        mAvaColor.setText(avaColor);
+        mAddWeight.setText(String.valueOf(addWeight));
+        mAddProba.setText(String.valueOf(addProba));
+        mDesiredProba.setText(String.valueOf(desiredProba));
+        mDesiredColor.setText(desiredColor);
 
-        if (idList == null) return;
 
-        if (mCursor.moveToFirst()) {
-
-            do {
-
-                int id = mCursor.getInt(mCursor.getColumnIndex(HistoryInputEntry._ID));
-
-                if (id == idList.get(POS)) {
-
-                    float avaWeight = mCursor.getFloat(
-                            mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_AVA_WEIGHT)
-                    );
-                    mInfoBinding.textAvaWeight.setText(String.valueOf(avaWeight));
-
-                    float avaProba = mCursor.getFloat(
-                            mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_AVA_PROBA)
-                    );
-                    mInfoBinding.textAvaProba.setText(String.valueOf(avaProba));
-
-                    String avaColor = mCursor.getString(
-                            mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_AVA_COLOR)
-                    );
-                    mInfoBinding.textAvaColor.setText(avaColor);
-
-                    float addWeight = mCursor.getFloat(
-                            mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_ADD_WEIGHT)
-                    );
-                    mInfoBinding.textAddWeight.setText(String.valueOf(addWeight));
-
-                    float addProba = mCursor.getFloat(
-                            mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_ADD_PROBA)
-                    );
-                    mInfoBinding.textAddProba.setText(String.valueOf(addProba));
-
-                    float desiredProba = mCursor.getFloat(
-                            mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_DESIRED_PROBA)
-                    );
-                    mInfoBinding.textDesiredProba.setText(String.valueOf(desiredProba));
-
-                    String desiredColor = mCursor.getString(
-                            mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_DESIRED_COLOR)
-                    );
-                    mInfoBinding.textDesiredColor.setText(String.valueOf(desiredColor));
-
-                }
-                while (mCursor.moveToNext()) ;
-
-            }
-        }
+        mInputCursor.close();
     }
 
-    private Cursor getAllInfo() {
+    private void showResultsInfo() {
+        mResultsCursor.moveToFirst();
+
+        float finalWeight = mResultsCursor.getFloat(
+                mResultsCursor.getColumnIndex(HistoryResultEntry.COLUMN_RESULT_FINAL_WEIGHT)
+        );
+        float finalCopper = mResultsCursor.getFloat(
+                mResultsCursor.getColumnIndex(HistoryResultEntry.COLUMN_RESULT_FINAL_COPPER)
+        );
+        float finalSilver = mResultsCursor.getFloat(
+                mResultsCursor.getColumnIndex(HistoryResultEntry.COLUMN_RESULT_FINAL_SILVER)
+        );
+
+        mFinalWeight.setText(String.valueOf(finalWeight));
+        mResultsAvaWeight.setVisibility(View.GONE);
+        mResultsAvaWeightLabel.setVisibility(View.GONE);
+        mCopperLabel.setText(finalCopper > 0 ? "Добавить меди" : "Убрать меди");
+        mSilverLabel.setText(finalSilver > 0 ? "Добавить серебра" : "Убрать серебра");
+        mCopper.setText(String.valueOf(finalCopper));
+        mSilver.setText(String.valueOf(finalSilver));
+        mResultsCursor.close();
+
+
+    }
+
+
+    private Cursor getInputInfo(int inputId) {
 
         return mDb.rawQuery("SELECT * FROM " + HistoryInputEntry.TABLE_NAME
-                + " INNER JOIN " + HistoryResultEntry.TABLE_NAME + " ON "
-                + HistoryInputEntry._ID + " = " + HistoryResultEntry._ID
-                + " GROUP BY " + HistoryInputEntry._ID, null);
+                + " WHERE TRIM(" + HistoryInputEntry.COLUMN_ID + ") = '" + String.valueOf(inputId).trim() + "'", null);
+    }
+
+    private Cursor getResultsInfo(int id) {
+        return mDb.rawQuery("SELECT * FROM " + HistoryResultEntry.TABLE_NAME
+                + " WHERE TRIM(" + HistoryResultEntry.COLUMN_ID + ") = '" + String.valueOf(id).trim() + "'", null);
     }
 
 

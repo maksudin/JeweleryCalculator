@@ -17,6 +17,9 @@ import com.example.android.jewelery.db.HistoryReaderContract;
 import com.example.android.jewelery.db.InsertDataHelper;
 import com.example.android.jewelery.details.DetailsActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class HistoryActivity extends AppCompatActivity implements HistoryAdapter.HistoryAdapterOnClickListener {
 
@@ -25,6 +28,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryAdapter
     private HistoryAdapter mAdapter;
     private SQLiteDatabase mDb;
     private RecyclerView mHistoryRecyclerView;
+    private List<Integer> mIdList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +44,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryAdapter
 
         mDb = new DbHelper(this).getWritableDatabase();
         Cursor cursor = getAllHistory();
-        mAdapter = new HistoryAdapter(this, cursor, this);
+        mAdapter = new HistoryAdapter(this, cursor, this, mIdList);
         mHistoryRecyclerView.setAdapter(mAdapter);
     }
 
@@ -53,7 +57,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryAdapter
         return mDb.query(
                 HistoryReaderContract.HistoryInputEntry.TABLE_NAME,
                 null, null, null, null, null,
-                HistoryReaderContract.HistoryInputEntry._ID + " DESC");
+                HistoryReaderContract.HistoryInputEntry.COLUMN_ID + " DESC");
     }
 
     @Override
@@ -69,7 +73,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryAdapter
         if (menuItemId == R.id.action_clear_history) {
             InsertDataHelper.deleteAllRows(mDb);
             Cursor cursor = getAllHistory();
-            mAdapter = new HistoryAdapter(this, cursor, this);
+            mAdapter = new HistoryAdapter(this, cursor, this, mIdList);
             mHistoryRecyclerView.setAdapter(mAdapter);
             mHistoryRecyclerView.invalidate();
 
@@ -81,8 +85,8 @@ public class HistoryActivity extends AppCompatActivity implements HistoryAdapter
     @Override
     public void onClick(int position) {
         Intent intent = new Intent(this, DetailsActivity.class);
-        intent.putExtra("pos", position);
-
+        mIdList = mAdapter.getIdList();
+        intent.putExtra("inputId", mIdList.get(position));
         startActivity(intent);
     }
 }
