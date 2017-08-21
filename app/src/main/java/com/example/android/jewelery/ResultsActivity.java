@@ -18,6 +18,8 @@ import com.example.android.jewelery.db.HistoryReaderContract;
 import com.example.android.jewelery.db.InsertDataHelper;
 import com.example.android.jewelery.details.DetailsActivity;
 
+import java.util.Locale;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -66,14 +68,14 @@ public class ResultsActivity extends AppCompatActivity{
     }
 
     private void displayData() {
-        resultsWeight.setText(String.valueOf(data.finalWeight));
+        resultsWeight.setText(String.format(Locale.getDefault(), "%.2f", data.finalWeight));
         avaWeight.setText(String.valueOf(data.avaWeight));
 
         resultsCopperLabel.setText(data.finalCopper > 0 ? "Добавить меди" : "Убрать меди");
-        resultsCopper.setText(String.valueOf(data.finalCopper));
+        resultsCopper.setText(String.format(Locale.getDefault(), "%.2f", data.finalCopper));
 
         resultsSilverLabel.setText(data.finalSilver > 0 ? "Добавить серебра" : "Убрать серебра");
-        resultsSilver.setText(String.valueOf(data.finalSilver));
+        resultsSilver.setText(String.format(Locale.getDefault(), "%.2f", data.finalSilver));
     }
 
     private void getData() {

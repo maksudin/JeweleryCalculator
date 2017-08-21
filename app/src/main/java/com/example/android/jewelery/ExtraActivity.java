@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Spinner;
-
+import android.widget.Toast;
 
 
 /**
@@ -65,27 +65,46 @@ public class ExtraActivity extends AppCompatActivity{
         getExtraData();
     }
 
-    private void getExtraData() {
+    private boolean getExtraData() {
 
         SharedPreferences preferences = getSharedPreferences(PREF_ADD_AND_DESIRED_DATA, 0);
         SharedPreferences.Editor editor = preferences.edit();
 
-        float addWeight = Float.valueOf(mAddWeightTextView.getText().toString());
-        editor.putFloat("addWeight", addWeight);
-        float addProba = Float.valueOf(mAddProbaTextView.getText().toString());
-        editor.putFloat("addProba", addProba);
-        float desiredProba = Float.valueOf(mDesiredProbaTextView.getText().toString());
-        editor.putFloat("desiredProba", desiredProba);
+        try {
+            float addWeight = Float.valueOf(mAddWeightTextView.getText().toString());
+            editor.putFloat("addWeight", addWeight);
+        } catch (NumberFormatException ex) {
+            Toast.makeText(this, "Недопустимое значение в поле вес", Toast.LENGTH_SHORT).show();
+            editor.apply();
+            return false;
+        }
+        try {
+            float addProba = Float.valueOf(mAddProbaTextView.getText().toString());
+            editor.putFloat("addProba", addProba);
+        } catch (NumberFormatException ex) {
+            Toast.makeText(this, "Недопустимое значение в поле имещиеся проба", Toast.LENGTH_SHORT).show();
+            editor.commit();
+            return false;
+        }
+        try {
+            float desiredProba = Float.valueOf(mDesiredProbaTextView.getText().toString());
+            editor.putFloat("desiredProba", desiredProba);
+        } catch (NumberFormatException ex) {
+            Toast.makeText(this, "Недопустимое значение в поле желаемая проба", Toast.LENGTH_SHORT).show();
+            editor.commit();
+            return false;
+        }
 
         String spinnerColor = mDesiredColor.getSelectedItem().toString();
         editor.putString("desiredColor", spinnerColor);
 
         editor.commit();
+        return true;
     }
 
     public void testResultsLayoutShowing(View view) {
+        if (!getExtraData()) return;
         Intent resultsIntent = new Intent(ExtraActivity.this, ResultsActivity.class);
-        getExtraData();
         startActivity(resultsIntent);
     }
 }

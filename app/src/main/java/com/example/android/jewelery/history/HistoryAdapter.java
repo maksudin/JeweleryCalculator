@@ -65,7 +65,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         );
         mIdList.add(id);
 
-        int avaProba = mCursor.getInt(
+        float avaProba = mCursor.getFloat(
                 mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_AVA_PROBA)
         );
         String avaColor = mCursor.getString(
@@ -80,7 +80,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryV
         String desiredColor = mCursor.getString(
                 mCursor.getColumnIndex(HistoryInputEntry.COLUMN_INPUT_DESIRED_COLOR)
         );
-        holder.avaProbaTextView.setText(String.valueOf(id));
+        holder.avaProbaTextView.setText(String.valueOf(avaProba));
         holder.avaColorTextView.setText(avaColor);
         holder.addProbaTextView.setText(String.valueOf(addProba));
         holder.desiredProbaTextView.setText(String.valueOf(desiredProba));

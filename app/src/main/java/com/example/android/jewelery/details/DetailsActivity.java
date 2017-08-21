@@ -20,6 +20,7 @@ import com.example.android.jewelery.db.HistoryReaderContract;
 import com.example.android.jewelery.history.HistoryAdapter;
 
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -124,13 +125,13 @@ public class DetailsActivity extends AppCompatActivity {
                 mResultsCursor.getColumnIndex(HistoryResultEntry.COLUMN_RESULT_FINAL_SILVER)
         );
 
-        mFinalWeight.setText(String.valueOf(finalWeight));
+        mFinalWeight.setText(String.format(Locale.getDefault(), "%.2f", finalWeight));
         mResultsAvaWeight.setVisibility(View.GONE);
         mResultsAvaWeightLabel.setVisibility(View.GONE);
         mCopperLabel.setText(finalCopper > 0 ? "Добавить меди" : "Убрать меди");
         mSilverLabel.setText(finalSilver > 0 ? "Добавить серебра" : "Убрать серебра");
-        mCopper.setText(String.valueOf(finalCopper));
-        mSilver.setText(String.valueOf(finalSilver));
+        mCopper.setText(String.format(Locale.getDefault(), "%.2f", finalCopper));
+        mSilver.setText(String.format(Locale.getDefault(), "%.2f", finalSilver));
         mResultsCursor.close();
 
 

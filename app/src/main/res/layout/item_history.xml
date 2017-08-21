@@ -10,60 +10,45 @@
 
     <TextView
         android:id="@+id/text_ava_color"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:fontFamily="monospace"
-        android:textSize="15sp"
+        style="@style/ListItemText"
         tools:text="Красный"
-        android:layout_marginTop="8dp"
+        android:textAppearance="@style/ListItemTextColorValue"
+        android:layout_marginTop="@dimen/text_list_item_margin_top"
         app:layout_constraintTop_toBottomOf="@+id/text_ava_proba"
-        android:layout_marginRight="0dp"
         app:layout_constraintRight_toRightOf="@+id/text_ava_proba"
-        android:layout_marginLeft="0dp"
-        app:layout_constraintLeft_toLeftOf="@+id/text_ava_proba" />
+        app:layout_constraintLeft_toLeftOf="@+id/text_ava_proba"/>
 
     <TextView
         android:id="@+id/text_ava_proba"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:fontFamily="monospace"
-        android:textSize="20sp"
+        style="@style/ListItemText"
+        android:textAppearance="@style/MainText"
         tools:text="585"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="@dimen/text_list_item_margin_left"
+        android:layout_marginTop="@dimen/text_list_item_margin_top"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="-9dp" />
+        />
 
     <TextView
         android:id="@+id/text_results_proba"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:fontFamily="monospace"
-        android:textSize="20sp"
         tools:text="585"
+        android:textAppearance="@style/MainText"
         app:layout_constraintTop_toTopOf="@+id/text_ava_proba"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="@dimen/text_list_item_margin_left"
         app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/text_results_color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:fontFamily="monospace"
-        android:textSize="15sp"
         tools:text="Красный"
-        android:layout_marginRight="8dp"
+        android:textAppearance="@style/ListItemTextColorValue"
         app:layout_constraintRight_toRightOf="@+id/text_results_proba"
-        android:layout_marginLeft="0dp"
-        app:layout_constraintLeft_toLeftOf="@+id/text_results_proba"
-        app:layout_constraintHorizontal_bias="0.314"
         app:layout_constraintTop_toTopOf="@+id/text_ava_color"
-        tools:layout_editor_absoluteY="48dp" />
+        app:layout_constraintLeft_toLeftOf="@+id/text_results_proba" />
 
     <ImageView
         android:id="@+id/image_arrow_forward"
@@ -83,6 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="999.9"
+        android:textAppearance="@style/ListItemTextColorValue"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toBottomOf="@+id/image_arrow_forward"
         android:layout_marginRight="0dp"

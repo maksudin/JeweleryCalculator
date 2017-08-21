@@ -7,5 +7,52 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    
+    <style name="TitleText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/title_margin_left</item>
+        <item name="android:layout_marginRight">@dimen/title_margin_left</item>
+        <item name="android:layout_marginTop">@dimen/title_top_margin</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="RightText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/text_label_left_margin</item>
+
+    </style>
+
+    <style name="MainText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">24sp</item>
+        <item name="android:typeface">monospace</item>
+        <item name="android:textColor">@color/secondary_text</item>
+    </style>
+
+    <style name="LabelTextTop">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/text_label_top_margin</item>
+        <item name="android:layout_marginLeft">@dimen/text_label_left_margin</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Button" parent="@android:style/Widget.Button">
+        <item name="android:layout_width">@dimen/button_width</item>
+        <item name="android:layout_height">@dimen/button_height</item>
+        <item name="android:layout_marginBottom">@dimen/button_margin_bottom</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="ListItemText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="ListItemTextColorValue">
+        <item name="android:textSize">18sp</item>
+        <item name="android:typeface">monospace</item>
+    </style>
 
 </resources>

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private AutoCompleteTextView mAvaWeightTextView;
     private AutoCompleteTextView mAvaProbaTextView;
     private Spinner mColor;
+    private Button mButton;
 
     public static final String PREF_AVA = "PREF_AVAILABLE_DATA";
 
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         mAvaWeightTextView = (AutoCompleteTextView) findViewById(R.id.text_ava_weight);
         mAvaProbaTextView = (AutoCompleteTextView) findViewById(R.id.text_ava_proba);
+        mButton = (Button) findViewById(R.id.button);
 
 
         SharedPreferences preferences = getSharedPreferences(PREF_AVA, 0);
@@ -86,23 +89,37 @@ public class MainActivity extends AppCompatActivity {
         getMainData();
     }
 
-    private void getMainData() {
+    private boolean getMainData() {
         SharedPreferences preferences = getSharedPreferences(PREF_AVA, 0);
         SharedPreferences.Editor editor = preferences.edit();
-        float avaWeight = Float.valueOf(mAvaWeightTextView.getText().toString());
-        editor.putFloat("avaWeight", avaWeight);
+        try {
+            float avaWeight = Float.valueOf(mAvaWeightTextView.getText().toString());
+            editor.putFloat("avaWeight", avaWeight);
+        } catch (NumberFormatException ex) {
+            Toast.makeText(this, "Недопустимое значение в поле вес", Toast.LENGTH_SHORT).show();
+            editor.commit();
+            return false;
+        }
 
-        float avaProba = Float.valueOf(mAvaProbaTextView.getText().toString());
-        editor.putFloat("avaProba", avaProba);
+        try {
+            float avaProba = Float.valueOf(mAvaProbaTextView.getText().toString());
+            editor.putFloat("avaProba", avaProba);
+        } catch (NumberFormatException ex) {
+            Toast.makeText(this, "Недопустимое значение в поле проба", Toast.LENGTH_SHORT).show();
+            editor.commit();
+            return false;
+        }
         String spinnerColor = mColor.getSelectedItem().toString();
         editor.putString("avaColor", spinnerColor);
 
         editor.commit();
+        return true;
     }
 
     public void startExtraActivity(View view) {
-        getMainData();
-        Intent extraIntent = new Intent(MainActivity.this, ExtraActivity.class);
-        startActivity(extraIntent);
+        if (getMainData()) {
+            Intent extraIntent = new Intent(MainActivity.this, ExtraActivity.class);
+            startActivity(extraIntent);
+        }
     }
 }
