@@ -37,6 +37,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryAdapter
         setContentView(R.layout.activity_history);
 
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setElevation(0);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mHistoryRecyclerView = (RecyclerView) findViewById(R.id.history_list_view);

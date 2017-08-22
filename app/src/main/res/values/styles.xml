@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="spinnerDropDownItemStyle">@style/MySpinnerItemStyle</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 
      <style name="ActionBar.Solid" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">

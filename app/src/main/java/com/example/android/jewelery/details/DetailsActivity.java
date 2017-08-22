@@ -58,6 +58,7 @@ public class DetailsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setElevation(0);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();

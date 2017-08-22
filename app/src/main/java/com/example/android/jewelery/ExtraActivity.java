@@ -33,6 +33,7 @@ public class ExtraActivity extends AppCompatActivity{
         setContentView(R.layout.activity_extra);
 
         ActionBar actionBar = getSupportActionBar();
+        actionBar.setElevation(0);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         mDesiredColor = (Spinner) findViewById(R.id.spinner_desired_color);

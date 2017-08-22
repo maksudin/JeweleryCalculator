@@ -48,10 +48,10 @@
         android:id="@+id/text_ava_proba"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/MainText"
         app:layout_constraintLeft_toLeftOf="@+id/text_ava_weight"
         app:layout_constraintRight_toRightOf="@+id/text_ava_weight"
         tools:text="750.0"
+        android:textAppearance="@style/MainText"
         android:textColor="@color/secondary_text"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintBottom_toBottomOf="@+id/text_ava_proba_label"
@@ -68,6 +68,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/text_ava_weight_label"
         android:layout_marginRight="32dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintVertical_bias="0.428" />
 
     <Spinner
