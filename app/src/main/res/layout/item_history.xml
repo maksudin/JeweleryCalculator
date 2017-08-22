@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -55,6 +56,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         app:srcCompat="@drawable/ic_arrow_forward_black_48dp"
+        android:tint="@color/secondary_text"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"

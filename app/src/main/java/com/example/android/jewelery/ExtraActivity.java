@@ -3,7 +3,9 @@ package com.example.android.jewelery;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -25,11 +27,13 @@ public class ExtraActivity extends AppCompatActivity{
 
     public static final String PREF_ADD_AND_DESIRED_DATA = "PREF_ADD_AND_DESIRED";
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_extra);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         mDesiredColor = (Spinner) findViewById(R.id.spinner_desired_color);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -57,12 +61,26 @@ public class ExtraActivity extends AppCompatActivity{
         mDesiredProbaTextView.setText(String.valueOf(desiredProba));
         mDesiredColor.setSelection(adapter.getPosition(spinnerColor));
 
+        // Display go back arrow in action bar.
+
+
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         getExtraData();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private boolean getExtraData() {

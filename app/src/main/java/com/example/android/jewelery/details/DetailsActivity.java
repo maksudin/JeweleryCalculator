@@ -5,21 +5,16 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.android.jewelery.R;
-import com.example.android.jewelery.databinding.InputInfoBinding;
-import com.example.android.jewelery.databinding.ResultsInfoBinding;
 import com.example.android.jewelery.db.DbHelper;
-import com.example.android.jewelery.db.HistoryReaderContract;
-import com.example.android.jewelery.history.HistoryAdapter;
 
-import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -62,11 +57,11 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         ButterKnife.bind(this);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         Intent intent = getIntent();
         final int INPUT_ID = intent.getIntExtra("inputId", -1);
-//        final String copperLabelText = intent.getStringExtra("copper");
-//        final String silverLabelText = intent.getStringExtra("silver");
-
 
         mDb = new DbHelper(this).getReadableDatabase();
 
@@ -110,6 +105,18 @@ public class DetailsActivity extends AppCompatActivity {
 
 
         mInputCursor.close();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void showResultsInfo() {

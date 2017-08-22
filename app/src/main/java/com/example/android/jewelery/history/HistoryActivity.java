@@ -3,7 +3,10 @@ package com.example.android.jewelery.history;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,8 +26,6 @@ import java.util.List;
 
 public class HistoryActivity extends AppCompatActivity implements HistoryAdapter.HistoryAdapterOnClickListener {
 
-//    private static final int NUM_LIST_ITEMS = 15;
-
     private HistoryAdapter mAdapter;
     private SQLiteDatabase mDb;
     private RecyclerView mHistoryRecyclerView;
@@ -34,6 +35,9 @@ public class HistoryActivity extends AppCompatActivity implements HistoryAdapter
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         mHistoryRecyclerView = (RecyclerView) findViewById(R.id.history_list_view);
 
@@ -47,6 +51,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryAdapter
         mAdapter = new HistoryAdapter(this, cursor, this, mIdList);
         mHistoryRecyclerView.setAdapter(mAdapter);
     }
+
 
 
     /**
@@ -63,22 +68,35 @@ public class HistoryActivity extends AppCompatActivity implements HistoryAdapter
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.history, menu);
+
+
+        for (int i = 0; i < menu.size(); i++) {
+            Drawable drawable = menu.getItem(i).getIcon();
+            if (drawable != null) {
+                drawable.mutate();
+                drawable.setColorFilter(getResources().getColor(R.color.secondary_text), PorterDuff.Mode.SRC_ATOP);
+            }
+        }
+
         return true;
     }
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int menuItemId = item.getItemId();
-        if (menuItemId == R.id.action_clear_history) {
-            InsertDataHelper.deleteAllRows(mDb);
-            Cursor cursor = getAllHistory();
-            mAdapter = new HistoryAdapter(this, cursor, this, mIdList);
-            mHistoryRecyclerView.setAdapter(mAdapter);
-            mHistoryRecyclerView.invalidate();
-
+        switch (item.getItemId()){
+            case android.R.id.home:
+                this.finish();
+                return true;
+            case R.id.action_clear_history:
+                InsertDataHelper.deleteAllRows(mDb);
+                Cursor cursor = getAllHistory();
+                mAdapter = new HistoryAdapter(this, cursor, this, mIdList);
+                mHistoryRecyclerView.setAdapter(mAdapter);
+                mHistoryRecyclerView.invalidate();
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
 

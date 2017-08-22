@@ -26,6 +26,7 @@
             style="@style/LabelTextTop"
             android:textAppearance="@style/MainText"
             tools:text="6"
+            android:textColor="@color/secondary_text"
             android:textSize="@dimen/text_values_size_input_info"
             app:layout_constraintTop_toBottomOf="@+id/text_ava_metal_title"
             app:layout_constraintLeft_toLeftOf="parent" />
@@ -58,6 +59,7 @@
             tools:text="5"
             android:textAppearance="@style/MainText"
             android:textSize="@dimen/text_values_size_input_info"
+            android:textColor="@color/secondary_text"
             android:layout_marginTop="@dimen/text_bot_label_top_margin"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_ava_weight" />
@@ -91,6 +93,7 @@
             tools:text="585"
             android:textAppearance="@style/MainText"
             android:textSize="@dimen/text_values_size_input_info"
+            android:textColor="@color/secondary_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_desired_results_title"
             app:layout_constraintVertical_bias="1.0"

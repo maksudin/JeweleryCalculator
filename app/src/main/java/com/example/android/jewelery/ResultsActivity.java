@@ -6,17 +6,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.example.android.jewelery.data.CalculateData;
 import com.example.android.jewelery.data.MainData;
-import com.example.android.jewelery.databinding.ActivityResultsBinding;
 import com.example.android.jewelery.db.DbHelper;
 import com.example.android.jewelery.db.HistoryReaderContract;
 import com.example.android.jewelery.db.InsertDataHelper;
-import com.example.android.jewelery.details.DetailsActivity;
 
 import java.util.Locale;
 
@@ -33,6 +33,7 @@ public class ResultsActivity extends AppCompatActivity{
     @BindView(R.id.text_copper_results) TextView resultsCopper;
     @BindView(R.id.text_silver_results_label) TextView resultsSilverLabel;
     @BindView(R.id.text_silver_results) TextView resultsSilver;
+    @BindView(R.id.text_results_title) TextView resultsTitle;
 
     MainData data = new MainData();
 
@@ -44,6 +45,10 @@ public class ResultsActivity extends AppCompatActivity{
         setContentView(R.layout.activity_results);
         ButterKnife.bind(this);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        resultsTitle.setVisibility(View.GONE);
         getData();
         calculateResult();
         displayData();
@@ -65,6 +70,17 @@ public class ResultsActivity extends AppCompatActivity{
     protected void onStop() {
         super.onStop();
         displayData();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void displayData() {
